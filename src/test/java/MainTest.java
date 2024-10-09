@@ -9,11 +9,13 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.instanceOf;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(ResultAnalyzer.class)
 public class MainTest {
@@ -25,6 +27,7 @@ public class MainTest {
     private Ceiling ceiling;
     private Wall wall;
     private Bedroom bedroom;
+    private Class<Object> quiltField;
 
     @BeforeEach
     void setUp() {
@@ -82,7 +85,6 @@ public class MainTest {
         assertEquals(sheetsField.getModifiers(), 2);
         assertEquals(quiltsField.getModifiers(), 2);
     }
-
     @DisplayName("Bed sınıf değişkenleri doğru type değerlerine sahip mi ?")
     @Test
     public void testBedInstanceTypes() throws NoSuchFieldException {
